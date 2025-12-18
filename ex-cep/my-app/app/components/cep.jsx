@@ -4,11 +4,6 @@ import { useEffect, useState } from "react";
 
 export default function ProcurarCep({setEndereco}){
 
-    function verificacao(){
-      if(cep.length !== 8 && cep.length !== 0) return true
-      else return false;
-    }
-
     const [cep, setCep] = useState("");
     const [error,setError] = useState('');
 
@@ -46,6 +41,13 @@ export default function ProcurarCep({setEndereco}){
     requisicao();
 },[cep, setEndereco]);
    
+ function verificacao(){
+      if(cep.length !== 8 && cep.length !== 0){
+        setError("CEP inválido")
+      }
+    }
+
+
     return(
         <div>
         <input
@@ -56,9 +58,10 @@ export default function ProcurarCep({setEndereco}){
             setCep(e.target.value)
             setError("")}
         }
+        onBlur={verificacao}
         />
 
-        {error && <p className="text-3xl">{error}</p>}
+        {error && <p className="text-3xl text-red">{error}</p>}
         </div>
     )
 

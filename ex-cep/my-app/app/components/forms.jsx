@@ -12,6 +12,7 @@ export default function Forms(){
             cidade: '',
             uf:'',
         });
+        const [error,setError] = useState('');
 
     function confirmacao(e){
         console.log(endereco)
@@ -28,13 +29,15 @@ export default function Forms(){
       <h2>Address</h2>
       <div className="row">
         <ProcurarCep setEndereco={setEndereco} />
+        {verificacao() && <p className="text-3xl text-red">{error}</p>}
       </div>
+
 
       <div className="row">
         <input 
         type="text"  
         placeholder="Rua" 
-        value={endereco.logradouro} 
+        defaultValue={endereco.logradouro} 
         onClick={verificacao}
         />
       </div>
@@ -54,7 +57,7 @@ export default function Forms(){
         <input 
         type="text" 
         placeholder="Bairro" 
-        value={endereco.bairro} 
+        defaultValue={endereco.bairro} 
         onClick={verificacao}
         />
       </div>
@@ -63,7 +66,7 @@ export default function Forms(){
         <input 
         type="text" 
         placeholder="Estado" 
-        value={endereco.uf} 
+        defaultValue={endereco.uf} 
         onClick={verificacao}
         />
       </div>
@@ -72,7 +75,7 @@ export default function Forms(){
         <input 
         type="text" 
         placeholder="Cidade" 
-        value={endereco.cidade} 
+        defaultValue={endereco.cidade} 
         onClick={verificacao}
         />
       </div>
